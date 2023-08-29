@@ -8,6 +8,7 @@ export class App {
   constructor(port: number) {
     this.app = express();
     this.port = port;
+    // this.app.set('view engine', 'ejs');
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
