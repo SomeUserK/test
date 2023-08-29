@@ -19,8 +19,9 @@ export class App {
 
     for (const file of files) {
       try {
-        const route = await import(`${routePath}/${file}`);
-        this.app.use(route); // FIXME no anda ni a gancho
+        const { router } = await import(`${routePath}/${file}`);
+        if (!router) throw new Error(`No se exportó la ruta en ${file}`);
+        this.app.use('/', router);
       } catch (error) {
         console.log(`Hubo un error al cagar el archivo ${file}`, error);
       }
